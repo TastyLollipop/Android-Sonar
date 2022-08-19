@@ -10,12 +10,11 @@ import com.lollipop.androidSonar.R
 import com.lollipop.androidSonar.databinding.FragmentOptionsBinding
 
 class OptionsFragment : Fragment() {
-    private lateinit var optionsBinding : FragmentOptionsBinding
+    lateinit var optionsBinding : FragmentOptionsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         optionsBinding = FragmentOptionsBinding.inflate(layoutInflater)
-        Main.optionsBinding = optionsBinding
     }
 
     override fun onCreateView(
@@ -27,6 +26,6 @@ class OptionsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Main.printInitializedFragments("OptionsFragment")
+        Main.populateSpinners()
     }
 }

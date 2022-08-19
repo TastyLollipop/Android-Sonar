@@ -41,7 +41,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blue"
-            android:entries="@array/threadCount"
             android:minHeight="48dp"
             android:spinnerMode="dialog" />
 
@@ -61,7 +60,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blue"
-            android:entries="@array/timeoutTime"
             android:minHeight="48dp"
             android:spinnerMode="dialog" />
 

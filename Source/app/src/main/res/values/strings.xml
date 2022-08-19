@@ -3,6 +3,10 @@
         <item>Android Sonar</item>
     </string>
 
+    <string name="about_URL">
+        <item>https://github.com/TastyLollipop/Sonar</item>
+    </string>
+
     <string-array name="threadCount">
         <item>1</item>
         <item>2</item>
