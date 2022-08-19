@@ -23,15 +23,11 @@ object UILogic {
     }
 
     fun addPortToOpenPortsBox(value: Int){
-        try {
-            if (value == -1) Main.mainFragment!!.openPortsBox.text = ""
-            else
-            {
-                val previousText: String = Main.mainFragment!!.openPortsBox.text.toString()
-                Main.mainFragment!!.openPortsBox.text = "$previousText - $value \n"
-            }
+        if (value == -1) Main.mainFragment!!.openPortsBox.text = ""
+        else
+        {
+            val previousText: String = Main.mainFragment!!.openPortsBox.text.toString()
+            Main.mainFragment!!.openPortsBox.text = "$previousText - $value \n"
         }
-
-        catch (e: Exception) {}
     }
 }

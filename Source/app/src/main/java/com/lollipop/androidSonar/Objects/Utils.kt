@@ -166,16 +166,14 @@ object Utils {
 
     //Finishes all operations and cleans the UI for next use
     private fun finalizeOperation() {
-        UILogic.setStatusLabel("${Main.maxProgressValue} / ${Main.maxProgressValue}")
+        UILogic.setStatusLabel("Idle")
         UILogic.setProgressBarProgress(Main.maxProgressValue)
-
-        val safeInvoke = Runnable { UILogic.toggleUI() }
-        Main.mainHandler!!.post(safeInvoke)
 
         Looper.prepare()
         Toast.makeText(Main.mainFragment, "Open ports: ${Main.openPortsList.count()}", Toast.LENGTH_SHORT).show()
 
-        UILogic.setStatusLabel("Idle")
+        val safeInvoke = Runnable { UILogic.toggleUI() }
+        Main.mainHandler!!.post(safeInvoke)
     }
 
     //Get functions go below
