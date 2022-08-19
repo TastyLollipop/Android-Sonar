@@ -10,9 +10,9 @@ object Main {
     val homeFragment: HomeFragment = HomeFragment()
     val optionsFragment: OptionsFragment = OptionsFragment()
 
-    var maxThreads: Int? = 64
+    var ip: String = ""
+    var maxThreads: Int = 0
+    var timeoutTime: Int = 0
 
     fun populateSpinners() { mainFragment!!.PopulateSpinners() }
-
-    fun setupButtons() { mainFragment!!.setupButtons() }
 }

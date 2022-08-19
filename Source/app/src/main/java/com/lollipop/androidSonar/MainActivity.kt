@@ -4,10 +4,7 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.lollipop.androidSonar.Objects.Main
 import com.lollipop.androidSonar.Objects.Threading
@@ -51,20 +48,5 @@ class MainActivity : AppCompatActivity() {
         val timeoutAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, timeoutCount)
         timeoutSpinner.adapter = timeoutAdapter
         timeoutSpinner.setSelection(0)
-    }
-
-    fun setupButtons(){
-        val scanButton = findViewById<Button>(R.id.scanButton)
-        val aboutButton = findViewById<Button>(R.id.aboutButton)
-
-        scanButton.setOnClickListener{
-            if(Utils.checkVariables()) Threading.generateThread(0)
-        }
-
-        aboutButton.setOnClickListener{
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(resources.getString(R.string.about_URL)))
-            try { startActivity(browserIntent) }
-            catch(e: ActivityNotFoundException) { }
-        }
     }
 }

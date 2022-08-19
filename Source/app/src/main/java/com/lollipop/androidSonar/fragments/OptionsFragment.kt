@@ -5,12 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import com.lollipop.androidSonar.Objects.Main
 import com.lollipop.androidSonar.R
 import com.lollipop.androidSonar.databinding.FragmentOptionsBinding
 
 class OptionsFragment : Fragment() {
-    lateinit var optionsBinding : FragmentOptionsBinding
+    private lateinit var optionsBinding : FragmentOptionsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
