@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blue"
             android:minHeight="48dp"
-            android:spinnerMode="dialog" />
+            android:spinnerMode="dropdown" />
 
         <TextView
             android:id="@+id/timeoutLabel2"
@@ -61,7 +61,33 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/blue"
             android:minHeight="48dp"
-            android:spinnerMode="dialog" />
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:id="@+id/openPortsLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:height="48dp"
+            android:background="@color/blue"
+            android:gravity="center"
+            android:text="Open Ports"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/openPortsBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:enabled="false"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:minLines="5" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="10dp" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

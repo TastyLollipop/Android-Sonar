@@ -4,6 +4,8 @@ import com.lollipop.androidSonar.classes.Networking
 import kotlin.concurrent.thread
 
 object Threading {
+    var networkThreadCount: Int = 0
+
     fun generateThread(threadID: Int){
         when (threadID) {
             0 ->
@@ -16,20 +18,22 @@ object Threading {
             1 ->
             {
                 thread(start = true, name = "Timer Thread") {
-                    println("Started thread: ${Thread.currentThread().name}")
+
                 }
             }
 
             2 ->
             {
                 thread(start = true, name = "Count Thread") {
-                    println("Started thread: ${Thread.currentThread().name}")
+                    Utils.startCounter()
                 }
             }
         }
     }
 
     fun generateNetworkThread(networkInstance: Networking){
+        networkThreadCount++
+
         thread(start = true, name = "Scan Thread") {
             networkInstance.scanPort()
         }

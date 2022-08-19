@@ -1,5 +1,6 @@
 package com.lollipop.androidSonar.Objects
 
+import android.os.Looper
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
@@ -9,9 +10,9 @@ import kotlin.math.roundToInt
 
 
 object Utils {
-    var threadFinalizing: Boolean = false
-    var threadAddingProgress: Boolean = false
-    var threadAddingOpenPort: Boolean = false
+    private var threadFinalizing: Boolean = false
+    private var threadAddingProgress: Boolean = false
+    private var threadAddingOpenPort: Boolean = false
 
     //Checks the variables before starting the operation
     fun checkVariables() : Boolean{
@@ -22,24 +23,37 @@ object Utils {
         val startingPortValue: Int = getPortRangeValues(0)
         val endingPortValue: Int = getPortRangeValues(1)
         val totalPorts: Int = endingPortValue - startingPortValue + 1
-        var isWrong = false as Boolean
+        var isWrong = false
 
-        if (startingPortValue > endingPortValue) isWrong = true;
-        if (startingPortValue < 0 || endingPortValue < 0) isWrong = true;
-        if (totalPorts < Main.maxThreads) isWrong = true;
-        if (startingPortValue < 1) isWrong = true;
-        if (endingPortValue > 65535) isWrong = true;
+        if (startingPortValue > endingPortValue) isWrong = true
+        if (startingPortValue < 0 || endingPortValue < 0) isWrong = true
+        if (totalPorts < Main.maxThreads) isWrong = true
+        if (startingPortValue < 1) isWrong = true
+        if (endingPortValue > 65535) isWrong = true
 
         if (isWrong)
         {
-            Toast.makeText(Main.mainFragment, "Error!", Toast.LENGTH_SHORT).show()
-            return false;
+            Toast.makeText(Main.mainFragment, "Error! Check Parameters", Toast.LENGTH_LONG).show()
+            return false
         }
 
         else
         {
-            Toast.makeText(Main.mainFragment, "Success!", Toast.LENGTH_SHORT).show()
-            return true;
+            Toast.makeText(Main.mainFragment, "Process Started", Toast.LENGTH_LONG).show()
+
+            UILogic.toggleUI()
+            UILogic.addPortToOpenPortsBox(-1)
+
+            Threading.networkThreadCount = 0
+
+            Main.openPortsList.clear()
+            Main.closedPortsList.clear()
+
+            Main.currentProgressValue = 0
+            Main.maxProgressValue = totalPorts
+            UILogic.setProgressBarProgress(0)
+            UILogic.setProgressBarMax(totalPorts)
+            return true
         }
     }
 
@@ -52,6 +66,8 @@ object Utils {
         var tempPortValue: Float = 0f
         var outOfBoundsPorts: Int = 0
         var extraStartingPort: Int = 0
+
+        UILogic.setStatusLabel("Preparing")
 
         //Calculate ports that are out of bounds
         for (i in 0 until Main.maxThreads) {
@@ -89,10 +105,77 @@ object Utils {
             //Starts the timer and counter system on the first thread
             if (i == 0)
             {
-                //Threading.generateThread(1);
-                //Threading.generateThread(2);
+                //Threading.generateThread(1)
+                Threading.generateThread(2)
             }
         }
+
+        while (Threading.networkThreadCount > 0) Thread.sleep(100)
+
+        finalizeOperation()
+    }
+
+    //Start the counter system
+    fun startCounter() {
+        while (Threading.networkThreadCount > 0) {
+            Thread.sleep(100)
+
+            if (Main.currentProgressValue == 0) continue
+
+            UILogic.setStatusLabel("${Main.currentProgressValue} / ${Main.maxProgressValue}")
+            UILogic.setProgressBarProgress(Main.currentProgressValue)
+        }
+    }
+
+    //Adds progress to the UI
+    fun addProgressToUI(){
+        while (threadAddingProgress) Thread.sleep(100)
+
+        threadAddingProgress = true
+
+        try { Main.currentProgressValue++ }
+        catch (e: Exception) { }
+
+        threadAddingProgress = false
+    }
+
+    //Add open ports to the box
+    fun addPortToBox(value: Int){
+        while (threadAddingOpenPort) Thread.sleep(100)
+
+        threadAddingOpenPort = true
+
+        try { UILogic.addPortToOpenPortsBox(value) }
+        catch (e: Exception) { }
+
+        threadAddingOpenPort = false
+    }
+
+    //Executes all the actions to close a certain thread
+    fun finalizeNetworkThread(openPortsList: MutableList<Int>, closedPortsList: MutableList<Int>) {
+        while (threadFinalizing) Thread.sleep(100)
+
+        threadFinalizing = true
+
+        Main.openPortsList.addAll(openPortsList)
+        Main.closedPortsList.addAll(closedPortsList)
+
+        Threading.networkThreadCount--
+        threadFinalizing = false
+    }
+
+    //Finishes all operations and cleans the UI for next use
+    private fun finalizeOperation() {
+        UILogic.setStatusLabel("${Main.maxProgressValue} / ${Main.maxProgressValue}")
+        UILogic.setProgressBarProgress(Main.maxProgressValue)
+
+        val safeInvoke = Runnable { UILogic.toggleUI() }
+        Main.mainHandler!!.post(safeInvoke)
+
+        Looper.prepare()
+        Toast.makeText(Main.mainFragment, "Open ports: ${Main.openPortsList.count()}", Toast.LENGTH_SHORT).show()
+
+        UILogic.setStatusLabel("Idle")
     }
 
     //Get functions go below

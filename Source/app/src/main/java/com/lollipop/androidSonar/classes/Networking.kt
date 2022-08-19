@@ -1,9 +1,10 @@
 package com.lollipop.androidSonar.classes
 
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.io.PrintWriter
-import java.net.InetAddress
+import android.R.attr
+import com.lollipop.androidSonar.Objects.Main
+import com.lollipop.androidSonar.Objects.UILogic
+import com.lollipop.androidSonar.Objects.Utils
+import java.net.InetSocketAddress
 import java.net.Socket
 
 
@@ -12,31 +13,28 @@ class Networking {
     var portArray: Array<Int>? = null
 
     fun scanPort(){
-        //println(portArray!!.count())
-        var openPortsList: MutableList<Int> = mutableListOf(0)
-        var closedPortsList: MutableList<Int> = mutableListOf(0)
+        var openPortsList: MutableList<Int> = mutableListOf()
+        var closedPortsList: MutableList<Int> = mutableListOf()
 
         for (i in portArray!!)
         {
             val port: Int = i
 
-            val client = Socket(ip, port)
-            val output = PrintWriter(client.getOutputStream(), true)
-            val input = BufferedReader(InputStreamReader(client.inputStream))
-
-            println("Client sending [Hello]")
-            output.println("Hello")
-            println("Client receiving [${input.readLine()}]")
-            client.close()
-
-            println(port)
-
             try
             {
+                val socket = Socket()
+                socket.connect(InetSocketAddress(ip, port), Main.timeoutTime)
+                socket.close()
 
+                openPortsList.add(port)
+                Utils.addPortToBox(port)
             }
 
             catch(e: Exception) { closedPortsList.add(port) }
+
+            Utils.addProgressToUI()
         }
+
+        Utils.finalizeNetworkThread(openPortsList, closedPortsList)
     }
 }
