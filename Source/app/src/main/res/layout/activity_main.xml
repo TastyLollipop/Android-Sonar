@@ -29,8 +29,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/appBarLayout"
-        tools:ignore="SpeakableTextPresentCheck">
-
-    </androidx.viewpager.widget.ViewPager>
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </RelativeLayout>

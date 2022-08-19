@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
     tools:context=".fragments.HomeFragment" >
 
     <LinearLayout
@@ -27,8 +26,7 @@
             android:gravity="center"
             android:text="Status: Idle"
             android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="20sp" />
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -140,6 +138,7 @@
             android:gravity="center"
             android:minHeight="64dip"
             android:text="Scan"
+            android:onClick="onScanButtonClick"
             android:textAlignment="center" />
 
         <Button
@@ -149,6 +148,7 @@
             android:gravity="center"
             android:minHeight="64dip"
             android:text="About"
+            android:onClick="onAboutButtonClick"
             android:textAlignment="center" />
 
     </LinearLayout>
