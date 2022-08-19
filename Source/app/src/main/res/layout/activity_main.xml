@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:keepScreenOn="true"
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -20,7 +21,8 @@
             app:tabInlineLabel="true"
             app:tabMode="fixed"
             app:tabTextColor="@color/white"
-            tools:ignore="SpeakableTextPresentCheck"></com.google.android.material.tabs.TabLayout>
+            tools:ignore="SpeakableTextPresentCheck">
+        </com.google.android.material.tabs.TabLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 

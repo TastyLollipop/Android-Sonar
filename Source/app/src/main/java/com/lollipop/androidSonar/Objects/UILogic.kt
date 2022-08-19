@@ -1,9 +1,5 @@
 package com.lollipop.androidSonar.Objects
 
-import android.text.Editable
-import android.widget.TextView
-import com.lollipop.androidSonar.R
-
 object UILogic {
     fun toggleUI(){
         Main.mainFragment!!.scanButton.isEnabled = !Main.mainFragment!!.scanButton.isEnabled
@@ -32,7 +28,7 @@ object UILogic {
             else
             {
                 val previousText: String = Main.mainFragment!!.openPortsBox.text.toString()
-                Main.mainFragment!!.openPortsBox.text = "$previousText - ${value} \n"
+                Main.mainFragment!!.openPortsBox.text = "$previousText - $value \n"
             }
         }
 
