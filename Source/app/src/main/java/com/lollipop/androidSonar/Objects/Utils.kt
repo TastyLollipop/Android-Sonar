@@ -27,10 +27,8 @@ object Utils {
 
             if (Main.ip.isEmpty() || Main.ip.contains(' ')) isWrong = true
             if (startingPortValue > endingPortValue) isWrong = true
-            if (startingPortValue < 0 || endingPortValue < 0) isWrong = true
+            if (startingPortValue < 1 || endingPortValue > 65535) isWrong = true
             if (totalPorts < Main.maxThreads) isWrong = true
-            if (startingPortValue < 1) isWrong = true
-            if (endingPortValue > 65535) isWrong = true
 
             if (isWrong)
             {
