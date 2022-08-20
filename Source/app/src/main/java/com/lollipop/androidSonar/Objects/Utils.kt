@@ -1,4 +1,4 @@
-package com.lollipop.androidSonar.objects
+package com.lollipop.androidSonar.Objects
 
 import android.widget.EditText
 import android.widget.Spinner

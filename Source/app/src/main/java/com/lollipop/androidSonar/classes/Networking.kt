@@ -1,7 +1,7 @@
 package com.lollipop.androidSonar.classes
 
-import com.lollipop.androidSonar.objects.Main
-import com.lollipop.androidSonar.objects.Utils
+import com.lollipop.androidSonar.Objects.Main
+import com.lollipop.androidSonar.Objects.Utils
 import java.net.InetSocketAddress
 import java.net.Socket
 

@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.lollipop.androidSonar.objects.Main
+import com.lollipop.androidSonar.Objects.Main
 import com.lollipop.androidSonar.R
 import com.lollipop.androidSonar.databinding.FragmentOptionsBinding
 

@@ -1,4 +1,4 @@
-package com.lollipop.androidSonar.objects
+package com.lollipop.androidSonar.Objects
 
 import android.os.Handler
 import com.lollipop.androidSonar.MainActivity
