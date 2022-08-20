@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var openPortsBox: TextView
     lateinit var timerLabel: TextView
 
-    private val aboutURL: String = "https://github.com/TastyLollipop/Sonar"
+    private val aboutURL: String = "https://github.com/TastyLollipop/Android-Sonar"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
