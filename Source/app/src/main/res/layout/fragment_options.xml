@@ -1,94 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true"
     tools:context=".fragments.OptionsFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <Space
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="10dp"
-            android:padding="10dp" />
+            android:orientation="vertical"
+            android:padding="10dp">
 
-        <TextView
-            android:id="@+id/threadLabel2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:height="48dp"
-            android:background="@color/blue"
-            android:gravity="center"
-            android:text="Thread Count"
-            android:textAlignment="center"
-            android:textSize="20sp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="10dp"
+                android:padding="10dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="10dp" />
+            <TextView
+                android:id="@+id/threadLabel2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:height="48dp"
+                android:background="@color/blue"
+                android:gravity="center"
+                android:text="Thread Count"
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
-        <Spinner
-            android:id="@+id/threadCountSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/blue"
-            android:minHeight="48dp"
-            android:spinnerMode="dropdown" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="10dp" />
 
-        <TextView
-            android:id="@+id/timeoutLabel2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:height="48dp"
-            android:background="@color/blue"
-            android:gravity="center"
-            android:text="Timeout Time (MS)"
-            android:textAlignment="center"
-            android:textSize="20sp" />
+            <Spinner
+                android:id="@+id/threadCountSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/dark_blue"
+                android:minHeight="48dp"
+                android:spinnerMode="dropdown" />
 
-        <Spinner
-            android:id="@+id/timeoutTimeSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/blue"
-            android:minHeight="48dp"
-            android:spinnerMode="dropdown" />
+            <TextView
+                android:id="@+id/timeoutLabel2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:height="48dp"
+                android:background="@color/blue"
+                android:gravity="center"
+                android:text="Timeout Time (MS)"
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/openPortsLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:height="48dp"
-            android:background="@color/blue"
-            android:gravity="center"
-            android:text="Open Ports"
-            android:textAlignment="center"
-            android:textSize="20sp" />
+            <Spinner
+                android:id="@+id/timeoutTimeSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/dark_blue"
+                android:minHeight="48dp"
+                android:spinnerMode="dropdown" />
 
-        <EditText
-            android:id="@+id/openPortsBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:enabled="false"
-            android:gravity="start|top"
-            android:inputType="textMultiLine"
-            android:minLines="5" />
+        </LinearLayout>
+    </ScrollView>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="10dp" />
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

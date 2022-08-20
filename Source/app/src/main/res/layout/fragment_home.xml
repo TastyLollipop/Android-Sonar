@@ -7,157 +7,200 @@
     android:keepScreenOn="true"
     tools:context=".fragments.HomeFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="10dp"
-        android:scrollbars="none"
-        android:verticalScrollbarPosition="defaultPosition"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <Space
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="10dp" />
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:scrollbars="none"
+            android:verticalScrollbarPosition="defaultPosition">
 
-        <TextView
-            android:id="@+id/statusLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:height="48dp"
-            android:background="@color/blue"
-            android:gravity="center"
-            android:text="Status: Idle"
-            android:textAlignment="center"
-            android:textSize="20sp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="10dp" />
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="false"
-            android:max="100"
-            android:minHeight="32dip"
-            android:progress="0"
-            android:progressTint="@color/blue" />
+            <TextView
+                android:id="@+id/statusLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:height="48dp"
+                android:background="@color/blue"
+                android:gravity="center"
+                android:text="Status: Idle"
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="10dp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="10dp" />
 
-        <TextView
-            android:id="@+id/ipLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:height="48dp"
-            android:background="@color/blue"
-            android:gravity="center"
-            android:text="IP"
-            android:textAlignment="center"
-            android:textSize="20sp" />
+            <TextView
+                android:id="@+id/timerLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:height="48dp"
+                android:background="@color/blue"
+                android:gravity="center"
+                android:text="Latest Time: None"
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/ipTextbox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:selectAllOnFocus="true"
-            android:singleLine="true"
-            android:text="192.168.1.60"
-            android:textAlignment="center"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="false"
+                android:max="100"
+                android:minHeight="32dip"
+                android:progress="0"
+                android:progressTint="@color/blue" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="10dp" />
+            <TextView
+                android:id="@+id/ipLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:height="48dp"
+                android:background="@color/blue"
+                android:gravity="center"
+                android:text="IP"
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/startingPortLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:height="48dp"
-            android:background="@color/blue"
-            android:gravity="center"
-            android:text="Starting Port"
-            android:textAlignment="center"
-            android:textSize="20sp" />
+            <EditText
+                android:id="@+id/ipTextbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:minHeight="48dp"
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                android:text="192.168.1.60"
+                android:textAlignment="center"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
-        <EditText
-            android:id="@+id/startingPortTextbox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:ems="10"
-            android:inputType="numberDecimal"
-            android:minHeight="48dp"
-            android:selectAllOnFocus="true"
-            android:singleLine="true"
-            android:text="1"
-            android:textAlignment="center"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="10dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="10dp" />
+            <TextView
+                android:id="@+id/startingPortLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:height="48dp"
+                android:background="@color/blue"
+                android:gravity="center"
+                android:text="Starting Port"
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/endingPortLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:height="48dp"
-            android:background="@color/blue"
-            android:gravity="center"
-            android:text="Ending Port"
-            android:textAlignment="center"
-            android:textSize="20sp" />
+            <EditText
+                android:id="@+id/startingPortTextbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:scrollbars = "vertical"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp"
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                android:text="1"
+                android:textAlignment="center"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
-        <EditText
-            android:id="@+id/endingPortTextbox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:ems="10"
-            android:enabled="true"
-            android:inputType="numberDecimal"
-            android:minHeight="48dp"
-            android:selectAllOnFocus="true"
-            android:singleLine="true"
-            android:text="65535"
-            android:textAlignment="center"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="10dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="10dp" />
+            <TextView
+                android:id="@+id/endingPortLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:height="48dp"
+                android:background="@color/blue"
+                android:gravity="center"
+                android:text="Ending Port"
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/scanButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:minHeight="64dip"
-            android:text="Scan"
-            android:textAlignment="center" />
+            <EditText
+                android:id="@+id/endingPortTextbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:ems="10"
+                android:enabled="true"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp"
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                android:text="65535"
+                android:textAlignment="center"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
-        <Button
-            android:id="@+id/aboutButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:minHeight="64dip"
-            android:text="About"
-            android:textAlignment="center" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="10dp" />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/scanButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/dark_blue"
+                android:gravity="center"
+                android:minHeight="64dip"
+                android:text="Scan"
+                android:textAlignment="center" />
+
+            <Button
+                android:id="@+id/aboutButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#3F51B5"
+                android:gravity="center"
+                android:minHeight="64dip"
+                android:text="About"
+                android:textAlignment="center" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="10dp" />
+
+            <TextView
+                android:id="@+id/openPortsLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:height="48dp"
+                android:background="@color/blue"
+                android:gravity="center"
+                android:text="Open Ports List"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/openPortsBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:enabled="true"
+                android:gravity="start|fill|top"
+                android:inputType="textMultiLine"
+                android:minLines="3" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

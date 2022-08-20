@@ -1,11 +1,10 @@
 package com.lollipop.androidSonar
 
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
-import android.view.WindowManager
+import android.text.method.ScrollingMovementMethod
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.lollipop.androidSonar.Objects.Main
@@ -13,7 +12,6 @@ import com.lollipop.androidSonar.Objects.Threading
 import com.lollipop.androidSonar.Objects.Utils
 import com.lollipop.androidSonar.adapters.ViewPagerAdapter
 import com.lollipop.androidSonar.databinding.ActivityMainBinding
-import org.w3c.dom.Text
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +26,9 @@ class MainActivity : AppCompatActivity() {
     lateinit var timeoutTimeSpinner: Spinner
     lateinit var statusLabel: TextView
     lateinit var openPortsBox: TextView
+    lateinit var timerLabel: TextView
+
+    private val aboutURL: String = "https://github.com/TastyLollipop/Sonar"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupTabs() {
         val adapter = ViewPagerAdapter(supportFragmentManager)
         adapter.addFragment(Main.homeFragment, "Main")
-        adapter.addFragment(Main.optionsFragment, "Options")
+        adapter.addFragment(Main.optionsFragment, "Settings")
 
         activityBinding.viewPager.adapter = adapter
         activityBinding.tabLayout.setupWithViewPager(activityBinding.viewPager)
@@ -53,13 +54,13 @@ class MainActivity : AppCompatActivity() {
     fun populateSpinners(){
         val threadCount = resources.getStringArray(R.array.threadCount)
         val threadSpinner = findViewById<Spinner>(R.id.threadCountSpinner)
-        val threadAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, threadCount)
+        val threadAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, threadCount)
         threadSpinner.adapter = threadAdapter
         threadSpinner.setSelection(threadSpinner.count - 1)
 
         val timeoutCount = resources.getStringArray(R.array.timeoutTime)
         val timeoutSpinner = findViewById<Spinner>(R.id.timeoutTimeSpinner)
-        val timeoutAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, timeoutCount)
+        val timeoutAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, timeoutCount)
         timeoutSpinner.adapter = timeoutAdapter
         timeoutSpinner.setSelection(0)
     }
@@ -73,7 +74,10 @@ class MainActivity : AppCompatActivity() {
         threadCountSpinner = findViewById<Spinner>(R.id.threadCountSpinner)
         timeoutTimeSpinner = findViewById<Spinner>(R.id.timeoutTimeSpinner)
         statusLabel = findViewById<TextView>(R.id.statusLabel)
+        timerLabel = findViewById<TextView>(R.id.timerLabel)
+
         openPortsBox = findViewById<TextView>(R.id.openPortsBox)
+        openPortsBox.setMovementMethod(ScrollingMovementMethod())
     }
 
     fun setupButtons(){
@@ -85,9 +89,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         aboutButton.setOnClickListener{
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(resources.getString(R.string.about_URL)))
-            try { startActivity(browserIntent) }
-            catch(e: ActivityNotFoundException) { }
+            val openURL = Intent(Intent.ACTION_VIEW)
+            openURL.data = Uri.parse(aboutURL)
+
+            try { startActivity(openURL) }
+            catch(e: Exception) { }
         }
     }
 }

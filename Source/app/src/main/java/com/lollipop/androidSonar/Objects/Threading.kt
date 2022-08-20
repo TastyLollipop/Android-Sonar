@@ -18,7 +18,7 @@ object Threading {
             1 ->
             {
                 thread(start = true, name = "Timer Thread") {
-
+                    Utils.startTimer()
                 }
             }
 

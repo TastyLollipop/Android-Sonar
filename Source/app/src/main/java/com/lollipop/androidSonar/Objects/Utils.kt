@@ -1,6 +1,5 @@
 package com.lollipop.androidSonar.Objects
 
-import android.os.Looper
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
@@ -49,7 +48,6 @@ object Utils {
             Main.openPortsList.clear()
             Main.closedPortsList.clear()
 
-            Main.currentProgressValue = 0
             Main.maxProgressValue = totalPorts
             UILogic.setProgressBarProgress(0)
             UILogic.setProgressBarMax(totalPorts)
@@ -57,6 +55,7 @@ object Utils {
         }
     }
 
+    //Generates all the networking threads to start the operation
     fun generateNetworkInstances(){
         val ip: String = Main.ip
         val startingPort: Int = getPortRangeValues(0)
@@ -105,7 +104,7 @@ object Utils {
             //Starts the timer and counter system on the first thread
             if (i == 0)
             {
-                //Threading.generateThread(1)
+                Threading.generateThread(1)
                 Threading.generateThread(2)
             }
         }
@@ -124,6 +123,34 @@ object Utils {
 
             UILogic.setStatusLabel("${Main.currentProgressValue} / ${Main.maxProgressValue}")
             UILogic.setProgressBarProgress(Main.currentProgressValue)
+        }
+    }
+
+    //Start the timer system
+    fun startTimer(){
+        var seconds = 0
+        var minutes = 0
+        var hours = 0
+
+        UILogic.manageTimer("$hours:$minutes:$seconds")
+
+        while (Threading.networkThreadCount > 0) {
+            Thread.sleep(1000)
+
+            seconds++
+
+            if (seconds >= 60) {
+                minutes++
+                seconds = 0
+            }
+
+            if (minutes >= 60) {
+                hours++
+                minutes = 0
+            }
+
+            val timeToPrint: String = "$hours:$minutes:$seconds"
+            UILogic.manageTimer(timeToPrint)
         }
     }
 
@@ -166,13 +193,16 @@ object Utils {
 
     //Finishes all operations and cleans the UI for next use
     private fun finalizeOperation() {
-        UILogic.setStatusLabel("Idle")
-        UILogic.setProgressBarProgress(Main.maxProgressValue)
+        Main.currentProgressValue = 0
 
-        Looper.prepare()
-        Toast.makeText(Main.mainFragment, "Open ports: ${Main.openPortsList.count()}", Toast.LENGTH_SHORT).show()
+        Thread.sleep(1000)
 
-        val safeInvoke = Runnable { UILogic.toggleUI() }
+        val safeInvoke = Runnable {
+            UILogic.toggleUI()
+            UILogic.setStatusLabel("Finished")
+            UILogic.setProgressBarProgress(Main.maxProgressValue)
+            Toast.makeText(Main.mainFragment, "Open ports: ${Main.openPortsList.count()}", Toast.LENGTH_SHORT).show()
+        }
         Main.mainHandler!!.post(safeInvoke)
     }
 
