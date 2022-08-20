@@ -15,43 +15,51 @@ object Utils {
 
     //Checks the variables before starting the operation
     fun checkVariables() : Boolean{
-        Main.ip = getIPValue()
-        Main.maxThreads = getMaxThreadsValue()
-        Main.timeoutTime = getTimeoutTimeValue()
+        try {
+            Main.ip = getIPValue()
+            Main.maxThreads = getMaxThreadsValue()
+            Main.timeoutTime = getTimeoutTimeValue()
 
-        val startingPortValue: Int = getPortRangeValues(0)
-        val endingPortValue: Int = getPortRangeValues(1)
-        val totalPorts: Int = endingPortValue - startingPortValue + 1
-        var isWrong = false
+            val startingPortValue: Int = getPortRangeValues(0)
+            val endingPortValue: Int = getPortRangeValues(1)
+            val totalPorts: Int = endingPortValue - startingPortValue + 1
+            var isWrong = false
 
-        if (startingPortValue > endingPortValue) isWrong = true
-        if (startingPortValue < 0 || endingPortValue < 0) isWrong = true
-        if (totalPorts < Main.maxThreads) isWrong = true
-        if (startingPortValue < 1) isWrong = true
-        if (endingPortValue > 65535) isWrong = true
+            if (Main.ip.isEmpty() || Main.ip.contains(' ')) isWrong = true
+            if (startingPortValue > endingPortValue) isWrong = true
+            if (startingPortValue < 0 || endingPortValue < 0) isWrong = true
+            if (totalPorts < Main.maxThreads) isWrong = true
+            if (startingPortValue < 1) isWrong = true
+            if (endingPortValue > 65535) isWrong = true
 
-        if (isWrong)
-        {
-            Toast.makeText(Main.mainFragment, "Error! Check Parameters", Toast.LENGTH_LONG).show()
-            return false
+            if (isWrong)
+            {
+                Toast.makeText(Main.mainFragment, "Error! Check Parameters", Toast.LENGTH_LONG).show()
+                return false
+            }
+
+            else
+            {
+                Toast.makeText(Main.mainFragment, "Process Started", Toast.LENGTH_LONG).show()
+
+                UILogic.toggleUI()
+                UILogic.addPortToOpenPortsBox(-1)
+
+                Threading.networkThreadCount = 0
+
+                Main.openPortsList.clear()
+                Main.closedPortsList.clear()
+
+                Main.maxProgressValue = totalPorts
+                UILogic.setProgressBarProgress(0)
+                UILogic.setProgressBarMax(totalPorts)
+                return true
+            }
         }
 
-        else
-        {
-            Toast.makeText(Main.mainFragment, "Process Started", Toast.LENGTH_LONG).show()
-
-            UILogic.toggleUI()
-            UILogic.addPortToOpenPortsBox(-1)
-
-            Threading.networkThreadCount = 0
-
-            Main.openPortsList.clear()
-            Main.closedPortsList.clear()
-
-            Main.maxProgressValue = totalPorts
-            UILogic.setProgressBarProgress(0)
-            UILogic.setProgressBarMax(totalPorts)
-            return true
+        catch (e: Exception){
+            Toast.makeText(Main.mainFragment, "Error! Check Parameters", Toast.LENGTH_LONG).show()
+            return false
         }
     }
 
