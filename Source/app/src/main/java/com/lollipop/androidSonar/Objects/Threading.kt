@@ -1,4 +1,4 @@
-package com.lollipop.androidSonar.Objects
+package com.lollipop.androidSonar.objects
 
 import com.lollipop.androidSonar.classes.Networking
 import kotlin.concurrent.thread

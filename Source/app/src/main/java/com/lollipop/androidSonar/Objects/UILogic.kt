@@ -1,4 +1,4 @@
-package com.lollipop.androidSonar.Objects
+package com.lollipop.androidSonar.objects
 
 object UILogic {
     fun toggleUI(){

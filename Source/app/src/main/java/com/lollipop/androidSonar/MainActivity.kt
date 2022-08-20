@@ -7,9 +7,9 @@ import android.os.Handler
 import android.text.method.ScrollingMovementMethod
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.lollipop.androidSonar.Objects.Main
-import com.lollipop.androidSonar.Objects.Threading
-import com.lollipop.androidSonar.Objects.Utils
+import com.lollipop.androidSonar.objects.Main
+import com.lollipop.androidSonar.objects.Threading
+import com.lollipop.androidSonar.objects.Utils
 import com.lollipop.androidSonar.adapters.ViewPagerAdapter
 import com.lollipop.androidSonar.databinding.ActivityMainBinding
 
