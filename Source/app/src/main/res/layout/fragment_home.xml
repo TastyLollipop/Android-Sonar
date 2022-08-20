@@ -197,7 +197,7 @@
                 android:enabled="true"
                 android:gravity="start|fill|top"
                 android:inputType="textMultiLine"
-                android:minLines="3" />
+                android:minLines="1" />
 
         </LinearLayout>
     </ScrollView>
