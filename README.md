@@ -12,7 +12,7 @@
 
 **How does it work?**
 - Input the IP you want to scan, then both the starting and ending ports.
-- Tweak the amount of threads you want to use during the scan.
+- Tweak the amount of simultaneous threads you want to use during the scan.
 - Tweak the amount of MS you want to use as timeout per port.
 - Press the 'Scan' button to allow the application to start working.
 - Wait until the process finishes all the tasks.
